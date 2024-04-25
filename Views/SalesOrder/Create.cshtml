@@ -1,0 +1,80 @@
+@using SalesOrder.Models
+@model SalesOrder.ViewModels.CreateSalesOrderViewModel
+
+@{
+    ViewData["Title"] = "Sales Order";
+}
+
+<h2>Sales Order</h2>
+
+<div class="row">
+    @* <div class="col-md-12">
+        <a asp-action="CreateSalesOrder" asp-controller="SalesOrder" class="btn btn-success">Create Product</a>
+    </div> *@
+</div>
+<br>
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="CreateSalesOrder" asp-controller="SalesOrder" method="post">
+            <div class="form-group">
+                <label for="selectedProduct">Select Product</label>
+                <select asp-asp-for="SalesOrderViewModel.ProductCode" name="ProductCode" class="form-control">
+                    <option value="">-- Select Product --</option>
+                    @foreach (var product in Model.SalesOrderViewModel.Product)
+                    {
+                        <option value="@product.ProductCode">@product.ProductName</option>
+                    }
+                </select>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="selectedCustomer">Select Customer</label>
+                <select asp-asp-for="SalesOrderViewModel.CustCode" name="CustCode" class="form-control">
+                    <option value="">-- Select Customer --</option>
+                    @foreach (var customer in Model.SalesOrderViewModel.Customer)
+                    {
+                        <option value="@customer.CustId">@customer.CustName</option>
+                    }
+                </select>
+            </div>
+            <br>
+          
+            @* <div class="form-group">
+                <label for="">Sales Order No</label>
+                <input asp-for="SalesOrderEntity.SalesOrderNo" type="text" class="form-control" required>
+            </div> *@
+            @* <br> *@
+            
+            <div class="form-group">
+                <label for="">Order Date</label>
+                <input asp-for="SalesOrderEntity.OrderDate" type="date" name="OrderDate" class="form-control" required disabled>
+            </div>
+            @* <div class="form-group">
+                <label for="">Price</label>
+                <input asp-for="SalesOrderEntity.Price" type="text" name="Price" class="form-control" required>
+            </div> *@
+            <br>
+            <div class="form-group">
+                <label for="">Qty</label>
+                <input asp-for="SalesOrderEntity.Qty" type="text" name="Qty" class="form-control" required>
+            </div>
+            <br>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            
+        </form>
+    </div>
+</div>
+
+<script>
+    // Check if TempData contains a success message
+    var successMessage = "@TempData["SuccessMessage"]";
+    if (successMessage) {
+        // Show a pop-up message
+        if (confirm(successMessage)) {
+            // If the user clicks "OK", redirect to the index page
+            window.location.href = '@Url.Action("Index", "SalesOrder")';
+        }
+    }
+</script>

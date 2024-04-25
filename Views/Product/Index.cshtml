@@ -1,0 +1,35 @@
+@using SalesOrder.Models
+
+@model List<ProductEntity>
+@{
+    ViewData["Title"] = "Products";
+}
+
+<h2>Products</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <a asp-action="Create" asp-controller="Product" class="btn btn-success">Create Product</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Product Code</td>
+                    <td>Product Name</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model)
+                {
+                    <tr>
+                        <td>@item.ProductCode</td>
+                        <td>@item.ProductName</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

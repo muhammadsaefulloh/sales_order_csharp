@@ -1,0 +1,43 @@
+@using SalesOrder.Models
+
+@model List<SalesOrderEntity>
+@{
+    ViewData["Title"] = "Data Sales Order";
+}
+
+<h2>Data Sales Order</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <a asp-action="Create" asp-controller="SalesOrder" class="btn btn-success">Create Product</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Order Date</td>
+                    <td>Sales Order No</td>
+                    <td>Cust Code</td>
+                    <td>Product Code</td>
+                    <td>Qty</td>
+                    <td>Price</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model)
+                {
+                    <tr>
+                        <td>@item.OrderDate</td>
+                        <td>@item.SalesOrderNo</td>
+                        <td>@item.CustCode</td>
+                        <td>@item.ProductCode</td>
+                        <td>@item.Qty</td>
+                        <td>@item.Price</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
